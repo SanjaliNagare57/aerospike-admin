@@ -1420,12 +1420,12 @@ def _string_to_bytes(k):
     k = k.split(" to ")
     s = k[0]
     b = {
-        "K": 1024 ** 1,
-        "M": 1024 ** 2,
-        "G": 1024 ** 3,
-        "T": 1024 ** 4,
-        "P": 1024 ** 5,
-        "E": 1024 ** 6,
+        "K": 1024**1,
+        "M": 1024**2,
+        "G": 1024**3,
+        "T": 1024**4,
+        "P": 1024**5,
+        "E": 1024**6,
     }
 
     for suffix, val in b.items():
@@ -2144,6 +2144,9 @@ def get_system_commands(port=3000):
         ["lsblk"],
         ["free -m"],
         ["uname -a"],
+        [
+            'sudo netstat -i | tr -s [:blank:] | cut -d" " -f1 | tail -n +3 | grep -v -E "lo|docker" | xargs --max-lines=1 -i{} sh -c "echo ethtool -S {}; ethtool -S {}"'
+        ],
         # Only in Pretty Print
         ["dmidecode -s system-product-name"],
         ["systemd-detect-virt"],
