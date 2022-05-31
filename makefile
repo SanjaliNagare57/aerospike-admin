@@ -57,7 +57,6 @@ one-file: init
 one-dir: init
 	$(call make_build)
 	pipenv run bash -c "(cd $(BUILD_ROOT)tmp && pyinstaller asadm-one-dir.spec --distpath $(BUILD_ROOT)bin)"
-	rm build/bin/asadm/libffi*
 	@echo Check $(BUILD_ROOT)bin for bundle
 
 .PHONY: init
